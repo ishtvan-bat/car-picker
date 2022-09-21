@@ -1,5 +1,6 @@
 package com.codingblocks.carpicker
 
+import com.codingblocks.carpicker.vehicle.CliktExe
 import com.codingblocks.carpicker.vehicle.Vehicle
 import com.codingblocks.carpicker.vehicle.parts.Chasis
 import com.codingblocks.carpicker.vehicle.parts.Engine
@@ -7,41 +8,9 @@ import com.codingblocks.carpicker.vehicle.parts.Transmission
 import com.codingblocks.carpicker.vehicle.parts.WheelBase
 import com.codingblocks.carpicker.vehicle.parts.seat.Seat
 import com.codingblocks.carpicker.vehicle.parts.wheel.Wheel
+import com.github.ajalt.clikt.*
+import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.UsageError
+import com.github.ajalt.clikt.output.TermUi
 
-fun main() {
-
-    val hondaCity = Vehicle(
-        WheelBase(
-            WheelBase.Size.MEDIUM,
-            Chasis(
-                Chasis.Type.SEDAN,
-                Seat.Factory(Seat.Upholstery.LEATHER)
-                ),
-            Wheel.Factory(Wheel.Type.STEEL)
-        ),
-        Engine(
-            Engine.Type.DIESEL,
-            Transmission(Transmission.Type.AWD)
-        )
-    )
-
-    val ecosport = Vehicle(
-        WheelBase(
-            WheelBase.Size.SMALL,
-            Chasis(
-                Chasis.Type.SUV,
-                Seat.Factory(Seat.Upholstery.REXINE)
-                ),
-            Wheel.Factory(Wheel.Type.ALLOY),
-            spareWheel = true
-        ),
-        Engine(
-            Engine.Type.PETROL,
-            Transmission(Transmission.Type.FWD)
-        )
-    )
-
-    println("HondaCity = ${hondaCity.price}")
-    println("Ecosport = ${ecosport.price}")
-    println("Ecosport = ${ecosport.wheelBase.numWheels}")
-}
+fun main(args: Array<String>) = CliktExe().main(args)

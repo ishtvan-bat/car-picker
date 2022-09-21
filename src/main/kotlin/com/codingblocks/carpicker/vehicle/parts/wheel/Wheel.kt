@@ -3,7 +3,7 @@ package com.codingblocks.carpicker.vehicle.parts.wheel
 import com.codingblocks.carpicker.vehicle.parts.IPart
 
  class Wheel private constructor(
-    private val type: Type
+    val type: Type
         ): IPart {
     override val selfPrice: Int = when (this.type){
         Type.STEEL -> 10_000
@@ -16,10 +16,10 @@ import com.codingblocks.carpicker.vehicle.parts.IPart
     enum class Type { STEEL, ALLOY, CARBON }
 
     class Factory (
-        private val type: Wheel.Type
+        val type: Type
     ) {
-        fun createWheel(): Wheel {
-            return Wheel(type)
+        fun createWheel(numWheels: Int): List<Wheel> {
+            return generateSequence { Wheel(type) }.take(numWheels).toList()
         }
     }
 

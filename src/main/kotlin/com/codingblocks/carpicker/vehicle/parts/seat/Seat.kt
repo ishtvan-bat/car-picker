@@ -3,7 +3,7 @@ package com.codingblocks.carpicker.vehicle.parts.seat
 import com.codingblocks.carpicker.vehicle.parts.IPart
 
 class Seat private constructor(
-    private val upholstery: Upholstery
+    val upholstery: Upholstery
         ): IPart {
 
     override val selfPrice: Int = when(this.upholstery){
@@ -17,8 +17,8 @@ class Seat private constructor(
     enum class Upholstery { CLOTH, REXINE, LEATHER}
 
     class Factory (val upholstery: Upholstery){
-        fun createSeat(): Seat {
-            return Seat(upholstery)
+        fun createSeats(numSeats: Int): List<Seat> {
+            return generateSequence { Seat(upholstery) }.take(numSeats).toList()
         }
     }
 }
